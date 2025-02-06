@@ -28,9 +28,10 @@
         <button onclick="move('down')">⬇️ Down</button>
     </div>
 
+    <script src="config.js"></script>
     <script>
-        const BASE_URL = "https://generak.cloudzack.com";
-
+        const BASE_URL = window.env.BASE_URL || "https://generak.cloudzack.com";
+    
         async function fetchWorld() {
             try {
                 const response = await fetch(`${BASE_URL}/world`);
@@ -40,7 +41,9 @@
                 console.error("Error fetching world:", error);
             }
         }
-
+    
+        fetchWorld();
+    
         function renderWorld(world) {
             const worldDiv = document.getElementById("world");
             worldDiv.innerHTML = "";
